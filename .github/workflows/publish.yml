@@ -14,6 +14,7 @@ concurrency: publish
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: instagram
     steps:
       - uses: actions/checkout@v4
       - name: Publish due posts
