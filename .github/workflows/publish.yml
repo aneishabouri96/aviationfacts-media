@@ -1,0 +1,30 @@
+name: Publish scheduled Instagram posts
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      check:
+        description: "Only check the token (prints account)"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency: publish
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish due posts
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: python3 scripts/publish.py ${{ inputs.check && '--check' || '' }}
+      - name: Record published posts
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain published.json)" ]; then
+            git config user.name "aviationfacts-bot"
+            git config user.email "aviationfacts-bot@users.noreply.github.com"
+            git add published.json && git commit -m "Record published posts" && git push
+          fi
