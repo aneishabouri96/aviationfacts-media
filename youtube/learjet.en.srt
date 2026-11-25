@@ -1,0 +1,487 @@
+1
+00:00:00,350 --> 00:00:05,580
+Twelve forty-seven p.m. Thirty-five thousand feet above South Florida.
+
+2
+00:00:06,517 --> 00:00:11,759
+The crew of a business jet radios air traffic control: light clear ice,
+
+3
+00:00:11,809 --> 00:00:14,667
+moderate turbulence. They ask to climb.
+
+4
+00:00:15,617 --> 00:00:18,763
+Within about a minute, the jet is gone from the sky.
+
+5
+00:00:18,813 --> 00:00:23,127
+Investigators say it began to break apart before it reached the ground.
+
+6
+00:00:24,083 --> 00:00:27,393
+So what have they found so far, and what don't they know yet?
+
+7
+00:00:31,850 --> 00:00:37,896
+It was Sunday, the first of November. A Learjet 60, registration N722BD,
+
+8
+00:00:37,946 --> 00:00:43,400
+was flying from Austin, Texas, to North Eleuthera in the Bahamas.
+
+9
+00:00:44,350 --> 00:00:47,356
+On board: two pilots, and seven passengers.
+
+10
+00:00:47,406 --> 00:00:52,545
+A family from Austin with their two young children, the children's nanny,
+
+11
+00:00:52,595 --> 00:00:54,180
+and two family friends.
+
+12
+00:00:55,117 --> 00:01:00,334
+The jet took off from Austin-Bergstrom at nine thirty-seven a.m. local time,
+
+13
+00:01:00,384 --> 00:01:02,067
+ten thirty-seven Eastern.
+
+14
+00:01:03,017 --> 00:01:05,740
+According to Flightradar24 tracking data,
+
+15
+00:01:05,790 --> 00:01:09,393
+it climbed to forty-one thousand feet and headed east,
+
+16
+00:01:09,443 --> 00:01:11,287
+out over the Gulf of Mexico.
+
+17
+00:01:12,250 --> 00:01:16,412
+For about two hours, everything about the flight appeared routine.
+
+18
+00:01:16,462 --> 00:01:17,752
+At cruising altitude,
+
+19
+00:01:17,802 --> 00:01:21,517
+a business jet like this is flown largely by the autopilot,
+
+20
+00:01:21,567 --> 00:01:26,240
+while the two pilots monitor the systems, the weather ahead and the radio.
+
+21
+00:01:27,183 --> 00:01:32,013
+Their destination was a small island airport on the Atlantic side of the Bahamas.
+
+22
+00:01:32,950 --> 00:01:38,529
+The Learjet name goes back to the 1960s, when Bill Lear set out to build a fast,
+
+23
+00:01:38,579 --> 00:01:40,780
+compact jet for business travel.
+
+24
+00:01:41,717 --> 00:01:47,258
+The Learjet 60 is a mid-size business jet, built by Bombardier in Wichita,
+
+25
+00:01:47,308 --> 00:01:49,827
+Kansas, and in service since 1993.
+
+26
+00:01:50,783 --> 00:01:54,076
+Two rear-mounted engines, room for up to eight passengers,
+
+27
+00:01:54,126 --> 00:01:57,533
+and a cruising speed of around four hundred and fifty knots.
+
+28
+00:01:58,483 --> 00:02:02,828
+This one was built in 2004 and operated by Aurora Aviation,
+
+29
+00:02:02,878 --> 00:02:04,913
+doing business as Upper Jet.
+
+30
+00:02:05,850 --> 00:02:10,034
+As the jet crossed the Florida coast near Naples, at about twelve thirty-five,
+
+31
+00:02:10,084 --> 00:02:14,920
+the tracking data show it descending from forty-one thousand to thirty-five thousand feet.
+
+32
+00:02:15,883 --> 00:02:17,977
+Ahead, the weather was changing:
+
+33
+00:02:18,027 --> 00:02:22,130
+thunderstorms were reported over South Florida that afternoon,
+
+34
+00:02:22,180 --> 00:02:24,273
+with strong gusts on the ground.
+
+35
+00:02:25,217 --> 00:02:29,209
+The NTSB has said the weather conditions are, in its words,
+
+36
+00:02:29,259 --> 00:02:31,607
+a major focus of the investigation.
+
+37
+00:02:32,550 --> 00:02:36,607
+At twelve forty-seven, at about thirty-five thousand feet,
+
+38
+00:02:36,657 --> 00:02:40,997
+the crew contacted air traffic control. According to the NTSB,
+
+39
+00:02:41,047 --> 00:02:44,820
+they reported light clear ice and moderate turbulence.
+
+40
+00:02:45,783 --> 00:02:49,573
+Their altitude was moving up and down by around seven hundred feet.
+
+41
+00:02:50,517 --> 00:02:55,507
+They asked to climb to thirty-seven thousand feet. Controllers approved.
+
+42
+00:02:56,450 --> 00:02:58,245
+To understand what happened next,
+
+43
+00:02:58,295 --> 00:03:01,040
+we need to look at what the crew was dealing with.
+
+44
+00:03:01,983 --> 00:03:06,718
+A single thunderstorm can be ten miles wide and fifty thousand feet tall,
+
+45
+00:03:06,768 --> 00:03:10,453
+according to NOAA, well above where business jets cruise.
+
+46
+00:03:11,417 --> 00:03:16,310
+Inside and around them, powerful updrafts and downdrafts create turbulence,
+
+47
+00:03:16,360 --> 00:03:21,847
+which is why the FAA advises pilots to avoid severe storms by at least twenty miles.
+
+48
+00:03:22,783 --> 00:03:24,513
+Ice is the second hazard.
+
+49
+00:03:24,563 --> 00:03:30,493
+Clear ice forms when supercooled water droplets freeze on contact with the aircraft.
+
+50
+00:03:31,450 --> 00:03:34,564
+It can change the shape of wings and tail surfaces,
+
+51
+00:03:34,614 --> 00:03:37,480
+which is why jets carry ice protection systems.
+
+52
+00:03:38,417 --> 00:03:42,429
+Every aircraft also has a maximum speed it is allowed to fly,
+
+53
+00:03:42,479 --> 00:03:47,156
+a limit set during certification, with a margin built in. Go beyond it,
+
+54
+00:03:47,206 --> 00:03:49,887
+and a loud warning sounds in the cockpit.
+
+55
+00:03:50,850 --> 00:03:53,810
+Back to twelve forty-seven. The climb was approved,
+
+56
+00:03:53,860 --> 00:03:56,880
+and the tracking data show the jet climbing briefly.
+
+57
+00:03:57,817 --> 00:03:59,739
+Then, according to the NTSB,
+
+58
+00:03:59,789 --> 00:04:05,797
+less than thirty seconds later a transmission from the aircraft announced the descent:
+
+59
+00:04:05,847 --> 00:04:08,967
+We are in an overspeed condition, descending.
+
+60
+00:04:09,917 --> 00:04:15,658
+Then a mayday. Flightradar24 data show the jet entering a steep descent,
+
+61
+00:04:15,708 --> 00:04:17,347
+turning to the right.
+
+62
+00:04:18,283 --> 00:04:19,481
+According to FAA data,
+
+63
+00:04:19,531 --> 00:04:26,799
+the jet dropped from about thirty-five thousand two hundred and fifty feet to around eight thousand seven hundred and fifty feet,
+
+64
+00:04:26,849 --> 00:04:28,273
+in a little over a minute.
+
+65
+00:04:29,217 --> 00:04:33,748
+That was the last altitude the tracking data captured. Moments later,
+
+66
+00:04:33,798 --> 00:04:35,807
+the aircraft struck the ground.
+
+67
+00:04:39,250 --> 00:04:43,198
+Through all of it, the pilots kept talking to air traffic control:
+
+68
+00:04:43,248 --> 00:04:47,680
+reporting the conditions, announcing the descent, declaring the emergency.
+
+69
+00:04:48,617 --> 00:04:52,372
+The aircraft came down in Greenacres, in Palm Beach County,
+
+70
+00:04:52,422 --> 00:04:54,887
+near a busy road called Military Trail.
+
+71
+00:04:55,850 --> 00:05:01,080
+All nine people on board were killed. A person in a nearby car was injured.
+
+72
+00:05:03,017 --> 00:05:07,949
+Hundreds of residents of a neighbouring mobile home community had to leave their homes,
+
+73
+00:05:07,999 --> 00:05:10,527
+and a nearby high school closed the next day.
+
+74
+00:05:11,483 --> 00:05:14,524
+Within hours, an NTSB team was on scene.
+
+75
+00:05:14,574 --> 00:05:19,856
+Wreckage was spread across about half a mile of homes and businesses,
+
+76
+00:05:19,906 --> 00:05:21,633
+some of it on rooftops.
+
+77
+00:05:22,583 --> 00:05:27,490
+Investigators asked residents not to keep or move anything they found,
+
+78
+00:05:27,540 --> 00:05:28,693
+but to report it.
+
+79
+00:05:29,650 --> 00:05:35,200
+Their first task on any accident scene is to document everything before it is moved:
+
+80
+00:05:35,250 --> 00:05:40,200
+where each piece lies, how it is damaged, how far it is from the main site.
+
+81
+00:05:41,150 --> 00:05:44,120
+Teams cleared a mobile home community, businesses,
+
+82
+00:05:44,170 --> 00:05:47,260
+a storage facility and the grounds of a high school.
+
+83
+00:05:48,217 --> 00:05:51,690
+By the eighth of November, most of the on-scene work was done,
+
+84
+00:05:51,740 --> 00:05:54,247
+apart from excavating the impact site itself.
+
+85
+00:05:55,183 --> 00:05:59,023
+Then came the finding that changed the picture. The left elevator,
+
+86
+00:05:59,073 --> 00:06:03,620
+the movable part of the tail that controls whether the nose points up or down,
+
+87
+00:06:03,670 --> 00:06:05,093
+was not at the main site.
+
+88
+00:06:06,050 --> 00:06:07,807
+It was found in three pieces,
+
+89
+00:06:07,857 --> 00:06:11,360
+between one point three and three point eight miles away.
+
+90
+00:06:12,317 --> 00:06:18,081
+NTSB board member Tom Chapman said that knowing it was lost is a very important piece of evidence,
+
+91
+00:06:18,131 --> 00:06:22,827
+and that at least some important pieces of the aircraft separated before impact.
+
+92
+00:06:23,783 --> 00:06:27,933
+What that means for the cause, he added, investigators don't know yet.
+
+93
+00:06:28,883 --> 00:06:32,810
+Investigators recovered parts of both wings, both engines,
+
+94
+00:06:32,860 --> 00:06:34,799
+the flight deck and the tail.
+
+95
+00:06:34,849 --> 00:06:38,913
+Some of them went to the NTSB laboratory in Washington, D.C.
+
+96
+00:06:39,850 --> 00:06:43,750
+What investigators have not said yet: why the elevator separated,
+
+97
+00:06:43,800 --> 00:06:47,640
+whether the weather played a role, and what caused the accident.
+
+98
+00:06:48,583 --> 00:06:51,893
+Until they do, anything else is speculation.
+
+99
+00:06:52,850 --> 00:06:56,492
+One more piece is now in the lab: the cockpit voice recorder,
+
+100
+00:06:56,542 --> 00:06:59,760
+recovered at the impact site on the ninth of November.
+
+101
+00:07:00,717 --> 00:07:04,552
+Despite the nickname black box, it is bright orange.
+
+102
+00:07:04,602 --> 00:07:10,455
+It records the pilots' voices, radio calls and sounds in the cockpit: warnings,
+
+103
+00:07:10,505 --> 00:07:11,427
+engine noise.
+
+104
+00:07:12,383 --> 00:07:17,241
+The audio is never made public. Only a written transcript is released,
+
+105
+00:07:17,291 --> 00:07:19,133
+later in the investigation.
+
+106
+00:07:20,083 --> 00:07:24,288
+At the NTSB laboratory, specialists first download the recording.
+
+107
+00:07:24,338 --> 00:07:28,542
+Then a group of experts listens to it together, often many times,
+
+108
+00:07:28,592 --> 00:07:33,713
+and writes down every word and every relevant sound, matched to the exact time.
+
+109
+00:07:34,650 --> 00:07:38,280
+That recording may help answer the questions that are still open.
+
+110
+00:07:39,217 --> 00:07:42,321
+A preliminary report is expected within weeks.
+
+111
+00:07:42,371 --> 00:07:47,327
+The NTSB will publish it with the facts gathered so far, without a cause.
+
+112
+00:07:48,283 --> 00:07:51,910
+These reports usually describe the flight path, the weather,
+
+113
+00:07:51,960 --> 00:07:54,913
+the crew's experience and the aircraft's history.
+
+114
+00:07:55,850 --> 00:08:02,641
+The full investigation usually takes twelve to twenty-four months and ends with a final report and a probable cause.
+
+115
+00:08:02,691 --> 00:08:05,000
+We'll cover each step when it comes out.
+
+116
+00:08:05,950 --> 00:08:10,353
+We remember the nine people who lost their lives: Jeffrey Gregory,
+
+117
+00:08:10,403 --> 00:08:15,144
+Nathalia Gadelha Filgueiras, Adam Robinson, Helen Sharp, Emma Robinson,
+
+118
+00:08:15,194 --> 00:08:20,340
+Charles Robinson, Ana Maria Ramirez Cetina, Rowan Fehr Toews and Rachel Reed.
+
+119
+00:08:22,283 --> 00:08:25,378
+Our thoughts are with their families, their friends,
+
+120
+00:08:25,428 --> 00:08:27,313
+and the community in Greenacres.
+
+121
+00:08:29,250 --> 00:08:33,234
+If you want to know what the preliminary report reveals, subscribe.
+
+122
+00:08:33,284 --> 00:08:35,040
+We'll be back, with the facts.
