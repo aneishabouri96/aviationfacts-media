@@ -71,8 +71,7 @@
     "media": [
       "posts/stories/2026-11-27-teaser-ge9x.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval"
+    "note": "approved by Arian 26.11"
   },
   {
     "id": "story-2026-11-28-teaser-blackbox",
@@ -81,8 +80,7 @@
     "media": [
       "posts/stories/2026-11-28-teaser-blackbox.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval",
+    "note": "approved by Arian 26.11",
     "after": "2026-11-28-blackbox-reel-v2"
   },
   {
@@ -92,8 +90,7 @@
     "media": [
       "posts/stories/2026-11-29-thisday-byrd.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval"
+    "note": "approved by Arian 26.11"
   },
   {
     "id": "story-2026-11-29-teaser-ba",
@@ -102,8 +99,7 @@
     "media": [
       "posts/stories/2026-11-29-teaser-ba.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval",
+    "note": "approved by Arian 26.11",
     "after": "2026-11-29-ba-record-reel-v2"
   },
   {
@@ -113,8 +109,7 @@
     "media": [
       "posts/stories/2026-11-30-teaser-cabin.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval",
+    "note": "approved by Arian 26.11",
     "after": "2026-11-30-cabin-lights-reel-v2"
   },
   {
@@ -124,8 +119,7 @@
     "media": [
       "posts/stories/2026-12-01-thisday-charles.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval"
+    "note": "approved by Arian 26.11"
   },
   {
     "id": "story-2026-12-01-teaser-greatcircle",
@@ -134,8 +128,7 @@
     "media": [
       "posts/stories/2026-12-01-teaser-greatcircle.jpg"
     ],
-    "paused": true,
-    "note": "waiting for Arian's approval",
+    "note": "approved by Arian 26.11",
     "after": "2026-12-01-great-circle-reel-v2"
   }
 ]
