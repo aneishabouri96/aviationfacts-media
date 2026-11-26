@@ -1,4 +1,4 @@
-"""Publish due Instagram posts listed in schedule.json via the Instagram API (Instagram Login).
+"""Publish due Instagram posts listed in schedule.json via the Instagram Graph API (Facebook Login, long-lived user token).
 
 Each entry in schedule.json:
   {"id": "2026-11-25-a380", "publish_at": "2026-11-25T12:00:00Z", "type": "carousel"|"image"|"reel",
@@ -8,7 +8,8 @@ Media paths are served publicly from raw.githubusercontent.com. Published ids go
 import json, os, sys, time, urllib.parse, urllib.request
 from datetime import datetime, timezone
 
-API = "https://graph.instagram.com/v23.0"
+API = "https://graph.facebook.com/v23.0"
+IG_USER = os.environ.get("IG_USER_ID", "17841411905181908")
 TOKEN = os.environ.get("IG_TOKEN", "")
 if not TOKEN:
     print("IG_TOKEN secret not set yet, nothing to do")
@@ -50,23 +51,23 @@ def url(p):
 def publish(e):
     t, media, cap = e["type"], e["media"], e.get("caption", "")
     if t == "image":
-        cid = call("POST", "me/media", image_url=url(media[0]), caption=cap)["id"]
+        cid = call("POST", f"{IG_USER}/media", image_url=url(media[0]), caption=cap)["id"]
     elif t == "reel":
         kw = dict(media_type="REELS", video_url=url(media[0]), caption=cap, share_to_feed="true")
         if e.get("cover"):
             kw["cover_url"] = url(e["cover"])
-        cid = call("POST", "me/media", **kw)["id"]
+        cid = call("POST", f"{IG_USER}/media", **kw)["id"]
     elif t == "carousel":
         kids = []
         for m in media:
-            kid = call("POST", "me/media", image_url=url(m), is_carousel_item="true")["id"]
+            kid = call("POST", f"{IG_USER}/media", image_url=url(m), is_carousel_item="true")["id"]
             wait_ready(kid)
             kids.append(kid)
-        cid = call("POST", "me/media", media_type="CAROUSEL", children=",".join(kids), caption=cap)["id"]
+        cid = call("POST", f"{IG_USER}/media", media_type="CAROUSEL", children=",".join(kids), caption=cap)["id"]
     else:
         raise ValueError(t)
     wait_ready(cid)
-    return call("POST", "me/media_publish", creation_id=cid)["id"]
+    return call("POST", f"{IG_USER}/media_publish", creation_id=cid)["id"]
 
 
 def main():
@@ -91,7 +92,9 @@ def main():
     if changed:
         json.dump(done, open("published.json", "w"), indent=2)
     if "--check" in sys.argv:
-        print(call("GET", "me", fields="user_id,username"))
+        print(call("GET", IG_USER, fields="id,username"))
+        dbg = call("GET", "me", fields="id,name")
+        print("token user ok:", bool(dbg.get("id")))
     sys.exit(1 if failed else 0)
 
 
