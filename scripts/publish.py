@@ -9,13 +9,13 @@ import json, os, sys, time, urllib.parse, urllib.request
 from datetime import datetime, timezone
 
 API = "https://graph.facebook.com/v23.0"
-IG_USER = os.environ.get("IG_USER_ID", "17841411905181908")
 TOKEN = os.environ.get("IG_TOKEN", "")
 if not TOKEN:
     print("IG_TOKEN secret not set yet, nothing to do")
     sys.exit(0)
 REPO = os.environ["GITHUB_REPOSITORY"]
 RAW = f"https://raw.githubusercontent.com/{REPO}/main/"
+IG_USER = None
 
 
 def call(method, path, **params):
@@ -31,6 +31,16 @@ def call(method, path, **params):
             return json.load(r)
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"{method} {path}: {e.code} {e.read().decode()[:500]}")
+
+
+def resolve_ig_user():
+    """Find the Instagram business account linked to the Facebook page(s) the token can see."""
+    pages = call("GET", "me/accounts", fields="instagram_business_account{id,username}").get("data", [])
+    for pg in pages:
+        ig = pg.get("instagram_business_account")
+        if ig and ig.get("username") == "aviationfacts_daily":
+            return ig["id"], len(pages)
+    return None, len(pages)
 
 
 def wait_ready(cid, tries=40):
@@ -71,6 +81,11 @@ def publish(e):
 
 
 def main():
+    global IG_USER
+    IG_USER, npages = resolve_ig_user()
+    if not IG_USER:
+        print(f"Token works, but no linked Instagram account aviationfacts_daily found ({npages} pages visible)")
+        sys.exit(1)
     sched = json.load(open("schedule.json"))
     done = json.load(open("published.json")) if os.path.exists("published.json") else {}
     now = datetime.now(timezone.utc)
@@ -92,9 +107,7 @@ def main():
     if changed:
         json.dump(done, open("published.json", "w"), indent=2)
     if "--check" in sys.argv:
-        print(call("GET", IG_USER, fields="id,username"))
-        dbg = call("GET", "me", fields="id,name")
-        print("token user ok:", bool(dbg.get("id")))
+        print("Token OK, publishing as", call("GET", IG_USER, fields="username")["username"])
     sys.exit(1 if failed else 0)
 
 
