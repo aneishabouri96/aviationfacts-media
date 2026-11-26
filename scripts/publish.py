@@ -12,6 +12,9 @@ Modes:
   (none)          publish every due, non-paused entry
   --check         only verify the token and print the account name (publishes nothing)
   --validate      offline check of schedule.json (fields, files, story formats); no API call
+Optional "after": "<other id>" holds an entry back until that entry is in published.json
+(e.g. a "new reel" teaser story only goes out once the reel itself is live).
+
   --test ID       build the Instagram container(s) for entry ID and wait until Instagram accepts the
                   media, but do NOT publish. Unpublished containers expire after 24 h.
 """
@@ -109,6 +112,7 @@ def publish(e):
 def validate(sched):
     """Offline sanity check of schedule.json. Returns a list of problems (empty = fine)."""
     probs, seen = [], set()
+    seen_all = {x.get("id") for x in sched}
     for e in sched:
         i = e.get("id", "?")
         if i in seen:
@@ -134,6 +138,8 @@ def validate(sched):
                 probs.append(f"{i}: story file must be .jpg (image) or .mp4/.mov (video)")
             if e.get("caption"):
                 probs.append(f"{i}: stories have no caption on Instagram, remove it")
+        if e.get("after") and e["after"] not in seen_all:
+            probs.append(f"{i}: 'after' points to unknown id {e['after']}")
         if t == "image" and media and not media[0].lower().endswith(IMG_EXT):
             probs.append(f"{i}: Instagram API only takes JPEG images")
         if t == "carousel" and not 2 <= len(media) <= 10:
@@ -181,6 +187,9 @@ def main():
             continue
         at = datetime.fromisoformat(e["publish_at"].replace("Z", "+00:00"))
         if at > now:
+            continue
+        if e.get("after") and e["after"] not in done:
+            print("waiting for", e["after"], "before", e["id"])
             continue
         try:
             mid = publish(e)

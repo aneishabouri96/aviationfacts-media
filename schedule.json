@@ -65,23 +65,77 @@
     "caption": "Why do flight paths look curved on a map? 🌍\n\nBecause the Earth is a sphere. The shortest route between two points is an arc called a great circle, and flat maps stretch the world, especially near the poles. That's why flights between North America and Europe often head far north, towards Greenland.\n\nWhich route surprised you the most on a flight map? 👇\n\n🎨 Illustration: AI-generated\nSources: Flightradar24, Smithsonian National Air and Space Museum\n\n#greatcircle #flightpath #navigation #everwondered #avgeek"
   },
   {
-    "id": "story-test-image",
+    "id": "story-2026-11-27-teaser-ge9x",
+    "publish_at": "2026-11-27T12:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-11-27-teaser-ge9x.jpg"
+    ],
+    "paused": true,
+    "note": "waiting for Arian's approval"
+  },
+  {
+    "id": "story-2026-11-28-teaser-blackbox",
     "publish_at": "2026-11-28T19:30:00Z",
     "type": "story",
     "media": [
       "posts/stories/2026-11-28-teaser-blackbox.jpg"
     ],
     "paused": true,
-    "note": "API test only, never published"
+    "note": "waiting for Arian's approval",
+    "after": "2026-11-28-blackbox-reel-v2"
   },
   {
-    "id": "story-test-video",
-    "publish_at": "2026-11-28T19:30:00Z",
+    "id": "story-2026-11-29-thisday-byrd",
+    "publish_at": "2026-11-29T08:30:00Z",
     "type": "story",
     "media": [
-      "posts/stories/test-video-story.mp4"
+      "posts/stories/2026-11-29-thisday-byrd.jpg"
     ],
     "paused": true,
-    "note": "API test only, never published"
+    "note": "waiting for Arian's approval"
+  },
+  {
+    "id": "story-2026-11-29-teaser-ba",
+    "publish_at": "2026-11-29T19:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-11-29-teaser-ba.jpg"
+    ],
+    "paused": true,
+    "note": "waiting for Arian's approval",
+    "after": "2026-11-29-ba-record-reel-v2"
+  },
+  {
+    "id": "story-2026-11-30-teaser-cabin",
+    "publish_at": "2026-11-30T19:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-11-30-teaser-cabin.jpg"
+    ],
+    "paused": true,
+    "note": "waiting for Arian's approval",
+    "after": "2026-11-30-cabin-lights-reel-v2"
+  },
+  {
+    "id": "story-2026-12-01-thisday-charles",
+    "publish_at": "2026-12-01T08:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-12-01-thisday-charles.jpg"
+    ],
+    "paused": true,
+    "note": "waiting for Arian's approval"
+  },
+  {
+    "id": "story-2026-12-01-teaser-greatcircle",
+    "publish_at": "2026-12-01T19:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-12-01-teaser-greatcircle.jpg"
+    ],
+    "paused": true,
+    "note": "waiting for Arian's approval",
+    "after": "2026-12-01-great-circle-reel-v2"
   }
 ]
