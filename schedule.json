@@ -63,5 +63,25 @@
     ],
     "cover": "posts/2026-12-01-great-circle-reel/cover.jpg",
     "caption": "Why do flight paths look curved on a map? 🌍\n\nBecause the Earth is a sphere. The shortest route between two points is an arc called a great circle, and flat maps stretch the world, especially near the poles. That's why flights between North America and Europe often head far north, towards Greenland.\n\nWhich route surprised you the most on a flight map? 👇\n\n🎨 Illustration: AI-generated\nSources: Flightradar24, Smithsonian National Air and Space Museum\n\n#greatcircle #flightpath #navigation #everwondered #avgeek"
+  },
+  {
+    "id": "story-test-image",
+    "publish_at": "2026-11-28T19:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-11-28-teaser-blackbox.jpg"
+    ],
+    "paused": true,
+    "note": "API test only, never published"
+  },
+  {
+    "id": "story-test-video",
+    "publish_at": "2026-11-28T19:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/test-video-story.mp4"
+    ],
+    "paused": true,
+    "note": "API test only, never published"
   }
 ]

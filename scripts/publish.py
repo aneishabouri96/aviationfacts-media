@@ -1,20 +1,31 @@
 """Publish due Instagram posts listed in schedule.json via the Instagram Graph API (Facebook Login, long-lived user token).
 
 Each entry in schedule.json:
-  {"id": "2026-11-25-a380", "publish_at": "2026-11-25T12:00:00Z", "type": "carousel"|"image"|"reel",
+  {"id": "2026-11-25-a380", "publish_at": "2026-11-25T12:00:00Z", "type": "carousel"|"image"|"reel"|"story",
    "media": ["posts/.../01.jpg", ...], "caption": "..."}
+type "story": exactly one file, JPEG image (1080x1920) or MP4/MOV video (9:16, max 60 s). No caption
+(Instagram ignores captions on stories). Polls, quizzes, links, music and mentions are NOT possible
+via the API; those stories stay manual in the Instagram app.
 Media paths are served publicly from raw.githubusercontent.com. Published ids go to published.json.
+
+Modes:
+  (none)          publish every due, non-paused entry
+  --check         only verify the token and print the account name (publishes nothing)
+  --validate      offline check of schedule.json (fields, files, story formats); no API call
+  --test ID       build the Instagram container(s) for entry ID and wait until Instagram accepts the
+                  media, but do NOT publish. Unpublished containers expire after 24 h.
 """
 import json, os, sys, time, urllib.parse, urllib.request
 from datetime import datetime, timezone
 
 API = "https://graph.facebook.com/v23.0"
 TOKEN = os.environ.get("IG_TOKEN", "")
-if not TOKEN:
-    print("IG_TOKEN secret not set yet, nothing to do")
-    sys.exit(0)
-REPO = os.environ["GITHUB_REPOSITORY"]
-RAW = f"https://raw.githubusercontent.com/{REPO}/main/"
+REPO = os.environ.get("GITHUB_REPOSITORY", "aneishabouri96/aviationfacts-media")
+# Serve media from the exact commit being run, so tests on a branch use that branch's files.
+RAW = f"https://raw.githubusercontent.com/{REPO}/{os.environ.get('GITHUB_SHA', 'main')}/"
+TYPES = ("image", "carousel", "reel", "story")
+IMG_EXT = (".jpg", ".jpeg")
+VID_EXT = (".mp4", ".mov")
 IG_USER = None
 
 
@@ -58,9 +69,19 @@ def url(p):
     return p if p.startswith("http") else RAW + p
 
 
-def publish(e):
+def is_video(p):
+    return p.lower().split("?")[0].endswith(VID_EXT)
+
+
+def create_container(e):
+    """Create (but do not publish) the Instagram media container for entry e; return its id."""
     t, media, cap = e["type"], e["media"], e.get("caption", "")
-    if t == "image":
+    if t == "story":
+        if is_video(media[0]):
+            cid = call("POST", f"{IG_USER}/media", media_type="STORIES", video_url=url(media[0]))["id"]
+        else:
+            cid = call("POST", f"{IG_USER}/media", media_type="STORIES", image_url=url(media[0]))["id"]
+    elif t == "image":
         cid = call("POST", f"{IG_USER}/media", image_url=url(media[0]), caption=cap)["id"]
     elif t == "reel":
         kw = dict(media_type="REELS", video_url=url(media[0]), caption=cap, share_to_feed="true")
@@ -77,21 +98,86 @@ def publish(e):
     else:
         raise ValueError(t)
     wait_ready(cid)
+    return cid
+
+
+def publish(e):
+    cid = create_container(e)
     return call("POST", f"{IG_USER}/media_publish", creation_id=cid)["id"]
+
+
+def validate(sched):
+    """Offline sanity check of schedule.json. Returns a list of problems (empty = fine)."""
+    probs, seen = [], set()
+    for e in sched:
+        i = e.get("id", "?")
+        if i in seen:
+            probs.append(f"{i}: duplicate id")
+        seen.add(i)
+        t, media = e.get("type"), e.get("media") or []
+        if t not in TYPES:
+            probs.append(f"{i}: unknown type {t!r}")
+            continue
+        try:
+            datetime.fromisoformat(e["publish_at"].replace("Z", "+00:00"))
+        except Exception:
+            probs.append(f"{i}: bad or missing publish_at")
+        if not media:
+            probs.append(f"{i}: no media")
+        for m in media + ([e["cover"]] if e.get("cover") else []):
+            if not m.startswith("http") and not os.path.exists(m):
+                probs.append(f"{i}: missing file {m}")
+        if t == "story":
+            if len(media) != 1:
+                probs.append(f"{i}: a story needs exactly one file")
+            elif not media[0].lower().endswith(IMG_EXT + VID_EXT):
+                probs.append(f"{i}: story file must be .jpg (image) or .mp4/.mov (video)")
+            if e.get("caption"):
+                probs.append(f"{i}: stories have no caption on Instagram, remove it")
+        if t == "image" and media and not media[0].lower().endswith(IMG_EXT):
+            probs.append(f"{i}: Instagram API only takes JPEG images")
+        if t == "carousel" and not 2 <= len(media) <= 10:
+            probs.append(f"{i}: carousel needs 2-10 files")
+    return probs
 
 
 def main():
     global IG_USER
+    sched = json.load(open("schedule.json"))
+    probs = validate(sched)
+    for p in probs:
+        print("SCHEDULE PROBLEM", p)
+    if "--validate" in sys.argv:
+        print(f"{len(sched)} entries checked, {len(probs)} problems")
+        sys.exit(1 if probs else 0)
+    if not TOKEN:
+        print("IG_TOKEN secret not set yet, nothing to do")
+        sys.exit(0)
     IG_USER, npages = resolve_ig_user()
     if not IG_USER:
         print(f"Token works, but no linked Instagram account aviationfacts_daily found ({npages} pages visible)")
         sys.exit(1)
-    sched = json.load(open("schedule.json"))
+    if "--check" in sys.argv:
+        print("Token OK, publishing as", call("GET", IG_USER, fields="username")["username"])
+        sys.exit(0)
+    if "--test" in sys.argv:
+        tid = sys.argv[sys.argv.index("--test") + 1]
+        e = next((x for x in sched if x["id"] == tid), None)
+        if not e:
+            print("TEST: no schedule entry", tid)
+            sys.exit(1)
+        try:
+            create_container(e)
+            print(f"TEST OK: Instagram accepted {e['type']} {tid}. Nothing was published.")
+            sys.exit(0)
+        except Exception as ex:
+            print("TEST FAILED", tid, ex)
+            sys.exit(1)
     done = json.load(open("published.json")) if os.path.exists("published.json") else {}
     now = datetime.now(timezone.utc)
     changed, failed = False, False
     for e in sched:
-        if e["id"] in done or e.get("paused"):
+        if e["id"] in done or e.get("paused") or e.get("type") not in TYPES:
             continue
         at = datetime.fromisoformat(e["publish_at"].replace("Z", "+00:00"))
         if at > now:
@@ -106,8 +192,6 @@ def main():
             failed = True
     if changed:
         json.dump(done, open("published.json", "w"), indent=2)
-    if "--check" in sys.argv:
-        print("Token OK, publishing as", call("GET", IG_USER, fields="username")["username"])
     sys.exit(1 if failed else 0)
 
 

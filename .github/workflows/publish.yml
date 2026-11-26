@@ -8,6 +8,10 @@ on:
         description: "Only check the token (prints account)"
         type: boolean
         default: false
+      test_id:
+        description: "Dry run: build the container for this schedule id, do not publish"
+        type: string
+        default: ""
 permissions:
   contents: write
 concurrency: publish
@@ -20,7 +24,13 @@ jobs:
       - name: Publish due posts
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
-        run: python3 scripts/publish.py ${{ inputs.check && '--check' || '' }}
+          TEST_ID: ${{ inputs.test_id }}
+        run: |
+          if [ -n "$TEST_ID" ]; then
+            python3 scripts/publish.py --test "$TEST_ID"
+          else
+            python3 scripts/publish.py ${{ inputs.check && '--check' || '' }}
+          fi
       - name: Record published posts
         if: always()
         run: |
