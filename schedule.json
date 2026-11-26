@@ -140,5 +140,15 @@
     ],
     "note": "approved by Arian 26.11",
     "after": "2026-12-01-great-circle-reel-v2"
+  },
+  {
+    "id": "2026-11-26-norse-news-reel",
+    "publish_at": "2026-11-26T17:00:00Z",
+    "type": "reel",
+    "media": [
+      "posts/2026-11-26-norse-news-reel/reel.mp4"
+    ],
+    "cover": "posts/2026-11-26-norse-news-reel/cover.jpg",
+    "caption": "Norse Atlantic has grounded every flight. ✈️⏸️\n\nOn Thursday (Nov 26), the Norwegian long-haul airline suspended all flights and said it will file for bankruptcy unless it secures short-term financing urgently. A day earlier it called its finances \"critical\", and its shares fell 85%.\n\nFounded in 2021 to bring back budget flights across the Atlantic, Norse operates 12 Boeing 787 Dreamliners. Talks with investors about a possible takeover are ongoing, but the company says there is no guarantee of a solution.\n\nBooked with Norse? Please follow the airline's official updates. Our thoughts are with the passengers and staff affected.\n\nDo you think low-cost long-haul can ever work? Tell us below. 👇\n\nPhotos (Wikimedia Commons): Bahnfrend, Mike Peel, MarcelX42, Bene Riobó (all CC BY-SA 4.0), Ridiculopathy (CC0).\n\n#NorseAtlantic #AviationNews #Boeing787 #Airlines #AvGeek"
   }
 ]
