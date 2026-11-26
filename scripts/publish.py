@@ -12,14 +12,17 @@ Modes:
   (none)          publish every due, non-paused entry
   --check         only verify the token and print the account name (publishes nothing)
   --validate      offline check of schedule.json (fields, files, story formats); no API call
+Optional "max_late_h": hours after publish_at the entry may still go out if a run was late
+(default 12 for stories, unlimited for feed posts); later than that it is skipped.
+A run waits for entries due within LOOKAHEAD_MIN (65) minutes, because GitHub's cron is irregular.
 Optional "after": "<other id>" holds an entry back until that entry is in published.json
 (e.g. a "new reel" teaser story only goes out once the reel itself is live).
 
   --test ID       build the Instagram container(s) for entry ID and wait until Instagram accepts the
                   media, but do NOT publish. Unpublished containers expire after 24 h.
 """
-import json, os, sys, time, urllib.parse, urllib.request
-from datetime import datetime, timezone
+import json, os, subprocess, sys, time, urllib.parse, urllib.request
+from datetime import datetime, timedelta, timezone
 
 API = "https://graph.facebook.com/v23.0"
 TOKEN = os.environ.get("IG_TOKEN", "")
@@ -30,6 +33,8 @@ TYPES = ("image", "carousel", "reel", "story")
 IMG_EXT = (".jpg", ".jpeg")
 VID_EXT = (".mp4", ".mov")
 IG_USER = None
+LOOKAHEAD = int(os.environ.get("LOOKAHEAD_MIN", "65"))  # wait for entries due this soon
+MAX_RUN = 150  # minutes one run may spend waiting
 
 
 def call(method, path, **params):
@@ -180,29 +185,78 @@ def main():
             print("TEST FAILED", tid, ex)
             sys.exit(1)
     done = json.load(open("published.json")) if os.path.exists("published.json") else {}
-    now = datetime.now(timezone.utc)
-    changed, failed = False, False
-    for e in sched:
-        if e["id"] in done or e.get("paused") or e.get("type") not in TYPES:
-            continue
-        at = datetime.fromisoformat(e["publish_at"].replace("Z", "+00:00"))
-        if at > now:
-            continue
-        if e.get("after") and e["after"] not in done:
-            print("waiting for", e["after"], "before", e["id"])
-            continue
-        try:
-            mid = publish(e)
-            done[e["id"]] = {"media_id": mid, "published_at": now.isoformat()}
-            print("published", e["id"], mid)
-            changed = True
-        except Exception as ex:
-            print("FAILED", e["id"], ex)
-            failed = True
-    if changed:
-        json.dump(done, open("published.json", "w"), indent=2)
+    failed = run_due(sched, done)
     sys.exit(1 if failed else 0)
 
+
+def max_late(e):
+    """How long after publish_at an entry may still go out. Stories are time-bound (a 'this day'
+    story makes no sense the next day), so they default to 12 h; feed posts have no limit.
+    Override per entry with "max_late_h"."""
+    h = e.get("max_late_h", 12 if e["type"] == "story" else None)
+    return None if h is None else timedelta(hours=h)
+
+
+def record(done):
+    """Save published.json and, inside GitHub Actions, commit + push it right away, so a later
+    run never posts the same entry twice even if this run is cancelled while waiting."""
+    json.dump(done, open("published.json", "w"), indent=2)
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    sh = lambda *a: subprocess.run(a, check=False, capture_output=True, text=True)
+    sh("git", "config", "user.name", "aviationfacts-bot")
+    sh("git", "config", "user.email", "aviationfacts-bot@users.noreply.github.com")
+    sh("git", "add", "published.json")
+    sh("git", "commit", "-m", "Record published posts")
+    for _ in range(4):
+        sh("git", "pull", "--rebase", "-q", "origin", "main")
+        if sh("git", "push", "-q", "origin", "HEAD:main").returncode == 0:
+            return
+        time.sleep(5)
+    print("WARNING: could not push published.json")
+
+
+def run_due(sched, done):
+    """Publish everything that is due. GitHub's cron often runs only about once an hour, so when
+    an entry is due within LOOKAHEAD minutes the run waits for it instead of leaving it to a
+    later (late) run. Entries that are too late to make sense (max_late) are skipped."""
+    failed, skipped = False, set()
+    start = datetime.now(timezone.utc)
+    while True:
+        now = datetime.now(timezone.utc)
+        nxt = None
+        for e in sched:
+            if e["id"] in done or e["id"] in skipped or e.get("paused") or e.get("type") not in TYPES:
+                continue
+            at = datetime.fromisoformat(e["publish_at"].replace("Z", "+00:00"))
+            if e.get("after") and e["after"] not in done:
+                if at <= now and e["id"] not in skipped:
+                    print("waiting for", e["after"], "before", e["id"])
+                    skipped.add(e["id"])  # report once; a later run picks it up
+                continue
+            if at > now:
+                nxt = at if nxt is None or at < nxt else nxt
+                continue
+            ml = max_late(e)
+            if ml is not None and now - at > ml:
+                print("SKIPPED (too late to make sense)", e["id"], "was due", e["publish_at"])
+                skipped.add(e["id"])
+                continue
+            try:
+                mid = publish(e)
+                done[e["id"]] = {"media_id": mid, "published_at": now.isoformat()}
+                print("published", e["id"], mid, f"({int((now - at).total_seconds() // 60)} min after slot)")
+                record(done)
+            except Exception as ex:
+                print("FAILED", e["id"], ex)
+                skipped.add(e["id"])
+                failed = True
+        now = datetime.now(timezone.utc)
+        if nxt is None or nxt - now > timedelta(minutes=LOOKAHEAD) or now - start > timedelta(minutes=MAX_RUN):
+            return failed
+        wait = max(0, (nxt - now).total_seconds()) + 5
+        print(f"next entry due {nxt.isoformat()}, waiting {int(wait // 60)} min")
+        time.sleep(wait)
 
 if __name__ == "__main__":
     main()
