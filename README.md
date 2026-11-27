@@ -17,3 +17,12 @@ Public media and posting schedule for Aviation Facts Daily.
 
 ## Timing
 GitHub's cron often runs only about once an hour. So each run waits for entries due within the next 65 minutes and publishes them on time (public repo: Actions minutes are free). Stories that are more than 12 hours late are skipped, because a "this day" or teaser story no longer makes sense then (override with `max_late_h`). published.json is committed right after each post.
+
+## Posting slots (US prime time, from Mon 30.11.2026)
+Main audience is the US (Eastern Time). Berlin = ET + 6 h (UTC+1 / UTC-5 in winter).
+- Reels (IG) + YouTube Shorts: 00:30 Berlin = 18:30 ET = `23:30Z` (the evening of the US calendar day)
+- Carousels: 18:00 Berlin = 12:00 ET = `17:00Z`
+- Teaser story for a reel: 30 min after the reel (`after` = reel id)
+- Other stories ("this day", profiles): 15:00 Berlin = 09:00 ET = `14:00Z`
+- YouTube long videos: 23:00 Berlin = 17:00 ET = `22:00Z`
+Watch out for DST: from 8.3.2027 (US) / 28.3.2027 (EU) the offsets shift; recheck then.
