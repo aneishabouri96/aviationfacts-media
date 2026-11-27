@@ -84,6 +84,15 @@
     "note": "approved by Arian 26.11"
   },
   {
+    "id": "story-2026-11-28-remember-erebus",
+    "publish_at": "2026-11-28T08:30:00Z",
+    "type": "story",
+    "media": [
+      "posts/stories/2026-11-28-remember-erebus.jpg"
+    ],
+    "note": "approved by Arian 27.11 (memorial, no CTA)"
+  },
+  {
     "id": "story-2026-11-28-teaser-blackbox",
     "publish_at": "2026-11-28T19:30:00Z",
     "type": "story",
