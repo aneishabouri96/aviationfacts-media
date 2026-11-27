@@ -179,5 +179,16 @@
     ],
     "paused": true,
     "note": "waiting for Arian's approval"
+  },
+  {
+    "id": "2026-11-27-norse-update-reel",
+    "publish_at": "2026-11-28T12:00:00Z",
+    "type": "reel",
+    "media": [
+      "posts/2026-11-27-norse-update-reel/reel.mp4"
+    ],
+    "cover": "posts/2026-11-27-norse-update-reel/cover.jpg",
+    "caption": "Update: Norse Atlantic's Norwegian airline has filed for bankruptcy. ✈️\n\nOn Friday (Nov 27), the board of Norse Atlantic Airways AS filed at the Agder District Court in Norway, one day after the airline grounded every flight. All Norse flights are cancelled and ticket sales have stopped. Its UK sister airline has also cancelled all flights, while the parent company looks for a solution for the rest of the business.\n\nAffected? Please don't go to the airport. Contact your travel agent, travel insurer or card provider about refunds and alternatives.\n\nOur thoughts are with everyone affected, including the airline's employees.\n\nPhotos (Wikimedia Commons): Bahnfrend, Mike Peel, MarcelX42, Ridiculopathy (CC0), Bene Riobó (long version) — CC BY-SA 4.0 unless noted.\n\n#NorseAtlantic #AviationNews #Airlines #Boeing787 #AvGeek",
+    "paused": true
   }
 ]
